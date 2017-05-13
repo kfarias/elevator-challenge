@@ -1,8 +1,8 @@
-const assert = require('assert')
+const assert = require('assert');
 
 require('babel-core/register')({
   ignore: /node_modules\/(?!ProjectB)/
-})
+});
 
 const Elevator = require('../Elevator').default;
 const Person = require('../Person').default;
@@ -21,7 +21,7 @@ describe('Elevator', function() {
 
     assert.equal(elevator.currentFloor, 5)
     assert.equal(elevator.motionStatus, 'idle')
-  })
+  });
 
   it('should bring a rider to a floor below their current floor', () => {
     let mockUser2 = { name: "Susan", currentFloor: 8, dropOffFloor: 3 }
@@ -30,7 +30,7 @@ describe('Elevator', function() {
 
     assert.equal(elevator.currentFloor, 3)
     assert.equal(elevator.motionStatus, 'idle')
-  })
+  });
 
   it('should bring a rider to a floor above their current floor', () => {
     let mockUser3 = { name: "Pammy", currentFloor: 2, dropOffFloor: 4 }
@@ -42,7 +42,7 @@ describe('Elevator', function() {
     assert.equal(elevator.totalStops, 2)
     assert.equal(elevator.totalFloors, 4)
     assert.equal(elevator.motionStatus, 'idle')
-  })
+  });
 
   it('should bring a rider to a floor below their current floor', () => { let mockUser = { name: "Pammy", currentFloor: 10, dropOffFloor: 2 };
     let mockUser4 = { name: "Pammy", currentFloor: 10, dropOffFloor: 2 }
@@ -51,7 +51,7 @@ describe('Elevator', function() {
 
     assert.equal(elevator.currentFloor, 2)
     assert.equal(elevator.motionStatus, 'idle')
-  })
+  });
 
   it('should let multiple people request drop off floors', () => {
     let Bob = { name: "Bob", currentFloor: 3, dropOffFloor: 9 }
@@ -62,7 +62,7 @@ describe('Elevator', function() {
 
     elevator.goToFloor(Sue)
     assert.equal(elevator.currentFloor, 2)
-  })
+  });
 
   it('should correctly count floors and stops when PersonA and PersonB go up', () => {
     let personA = { name: "Bob", currentFloor: 2, dropOffFloor: 4 }
@@ -80,7 +80,7 @@ describe('Elevator', function() {
     assert.equal(elevator.totalFloors, 10)
     assert.equal(elevator.currentFloor, 10)
     assert.equal(elevator.completedRequests, 2)
-  })
+  });
 
   it('should correctly count floors and stops when PersonA goes up and PersonB goes down', () => {
     let personA = { name: "Bob", currentFloor: 3, dropOffFloor: 9 }
@@ -97,7 +97,7 @@ describe('Elevator', function() {
     assert.equal(elevator.totalFloors, 16)
     assert.equal(elevator.currentFloor, 2)
     assert.equal(elevator.completedRequests, 2)
-  })
+  });
 
   it('should correctly count floors and stops when PersonA goes down and PersonB goes up', () => {
     let personA = { name: "Bob", currentFloor: 10, dropOffFloor: 2 }
@@ -115,7 +115,7 @@ describe('Elevator', function() {
     assert.equal(elevator.totalFloors, 22)
     assert.equal(elevator.currentFloor, 4)
     assert.equal(elevator.completedRequests, 2)
-  })
+  });
 
   it('should correctly count floors and stops when PersonA and PersonB go down', () => {
     let personA = { name: "Bob", currentFloor: 12, dropOffFloor: 2 }
@@ -133,7 +133,7 @@ describe('Elevator', function() {
     assert.equal(elevator.totalFloors, 32)
     assert.equal(elevator.currentFloor, 4)
     assert.equal(elevator.completedRequests, 2)
-  })
+  });
 
   it('should correctly count floors and stops when PersonA and PersonB share floors', () => {
     let personA = { name: "Bob", currentFloor: 4, dropOffFloor: 10 }
@@ -166,8 +166,8 @@ describe('Elevator', function() {
     assert.equal(elevator.totalFloors, 34)
     assert.equal(elevator.currentFloor, 18)
     assert.equal(elevator.completedRequests, 4)
-  })
-})
+  });
+});
 
 
 describe('Person', function() {
@@ -175,12 +175,12 @@ describe('Person', function() {
    let person = new Person({name: "Pamela", currentFloor: 2})
 
    assert.deepEqual(person, { name: 'Pamela', currentFloor: 2 })
- })
+ });
 
  it('should have a method that allows users to request a floor', () => {
    let person = new Person({name: "Pamela", currentFloor: 2})
    person.requestDropOffFloor(10)
 
    assert.deepEqual(person, { name: 'Pamela', currentFloor: 2, dropOffFloor: 10 })
- })
-})
+ });
+});

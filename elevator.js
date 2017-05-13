@@ -9,7 +9,7 @@ export default class Elevator {
     this.totalStops = 0
     this.totalFloors = 0
     this.motionStatus
-  }
+  };
 
   reset() {
     this.requests = []
@@ -21,12 +21,12 @@ export default class Elevator {
     this.totalStops = 0
     this.totalFloors = 0
     this.motionStatus
-  }
+  };
 
   goToFloor(person) {
     this.requests.push(person)
     this.startElevatorTrip(person)
-  }
+  };
 
   startElevatorTrip(person){
     this.riders.push(person)
@@ -34,14 +34,14 @@ export default class Elevator {
     this.motionStatus = 'moving'
     this.logElevatorTrip()
     this.stopElevator()
-  }
+  };
 
   logElevatorTrip(){
     let currentRider = this.riders[0]
     this.countStops(this.getStops())
     this.countFloors(this.getStops())
     this.currentFloor = currentRider.dropOffFloor
-  }
+  };
 
   stopElevator(){
     this.motionStatus = 'idle'
@@ -50,11 +50,11 @@ export default class Elevator {
       this.riders.shift()
     }
     this.completedRequests ++
-  }
+  };
 
   getStops() {
     return [this.riders[0].currentFloor, this.riders[0].dropOffFloor]
-  }
+  };
 
   countFloors(stopsArray){
     if(this.currentFloor === 0) {
@@ -68,7 +68,7 @@ export default class Elevator {
       let floorsTraversed = floordiff1 + floordiff2
       this.totalFloors = this.totalFloors + floorsTraversed
     }
-  }
+  };
 
   countStops(stopsArray){
     if(this.currentFloor === stopsArray[0]) {
@@ -77,4 +77,4 @@ export default class Elevator {
       this.totalStops = this.totalStops + 2
     }
   }
-}
+};
